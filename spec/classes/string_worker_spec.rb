@@ -2,6 +2,9 @@
 # The task is to replace 'a' and 'b' letters in the longest word of given string
 # Your class also should match following specifications
 
+# You should understand, that there are other specs and it is generated with
+# random examples. So, please, do not try to cheate with code submitted =)
+
 require 'spec_helper'
 
 describe StringWorker do
