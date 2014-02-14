@@ -1,19 +1,20 @@
 class SubmissionsController < ApplicationController
+  include ActionController::Live
+
   expose(:submission, attributes: :submission_params)
 
   def create
-    if submission.save
-      run_submission
-    else
-      render :new
+    response.headers['Content-Type'] = 'text/event-stream'
+    result = CheckCode.new(submission)
+
+    result.read.each do |line|
+      response.stream.write line
     end
+
+    response.stream.close
   end
 
   private
-
-  def run_submission
-    system 'bin/run_submission'
-  end
 
   def submission_params
     params.require(:submission).permit(:email, :source_code)
