@@ -1,0 +1,29 @@
+AllCops:
+  RunRailsCops: true
+  Excludes:
+    - bin/**
+    - db/**
+    - config/**
+    - lib/templates/**
+    - spec/**
+    - script/**
+    - vendor/**
+
+
+Documentation:
+  Description: 'Document classes and non-namespace modules.'
+  Enabled: false
+
+SymbolArray:
+  Description: 'Use %i or %I for arrays of symbols.'
+  Enabled: true
+
+LineLength:
+  Description: 'Limit lines to 120 characters.'
+  Max: 120
+
+MethodLength:
+  Max: 15
+
+ClassLength:
+  Max: 120
