@@ -1,0 +1,42 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'json'
+
+output = `bin/rspec spec`
+puts output
+
+# rubocop warnings
+output = `bin/rubocop --rails --format json`
+output = JSON.parse output
+warnings = output["summary"]["offence_count"]
+output = `bin/rubocop --rails`
+if warnings > 0
+  output
+  puts 'Warning limit exceeded. You should keep zero amount of warnings from rubocop.'
+  exit(1)
+else
+  puts "From rubocop: warnings count is #{warnings}."
+end
+
+# brakeman warnings
+# output = `bin/brakeman --quiet --skip-libs --except ForgerySetting`
+# warnings = (output.match(/security warnings.+(\d+)/i) || [0, 0])[1].to_i
+# if warnings > 0
+#   puts output
+#   puts 'Warning limit exceeded. You should keep zero amount of warnings from brakeman below.'
+#   exit(1)
+# else
+#   puts "From brakeman: warnings count is #{warnings}."
+# end
+
+# rails_best_practices warnings
+output = `bin/rails_best_practices --silent --spec --features -x lib/templates`
+warnings = (output.match(/Found\s(\d+)/) || [0, 0])[1].to_i
+if warnings > 0
+  puts output
+  puts 'Warning limit exceeded. You should keep zero amount of warnings from rails_best_practices.'
+  exit(1)
+else
+  puts "From rails_best_practices: warnings count is #{warnings}."
+end
