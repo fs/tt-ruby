@@ -28,8 +28,10 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 gem 'mail_view'
+gem 'decent_exposure'
 
 group :development, :test do
+  gem 'jazz_hands'
   gem 'rspec-rails'
 end
 

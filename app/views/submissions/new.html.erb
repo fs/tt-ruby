@@ -1,2 +1,8 @@
-<h1>Submissions#new</h1>
-<p>Find me in app/views/submissions/new.html.erb</p>
+<h1>New submission</h1>
+
+<%= form_for(submission, remote: true) do |f| %>
+  <%= f.email_field :email %>
+  <%= f.text_area :source_code %>
+  <%= f.submit "Submit" %>
+<% end %>
+
