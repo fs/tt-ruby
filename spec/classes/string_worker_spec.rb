@@ -8,14 +8,16 @@
 require 'spec_helper'
 
 describe StringWorker do
-  let(:input_string) { 'a fat black cat sat on a hat' }
-  let(:string_worker) { StringWorker.new(input_string) }
+  let(:input_string) { 'Lorem ipsum dolor sit amet,
+        sed diam nonummy nibh euismod...' }
+  let!(:string_worker) { StringWorker.new(input_string) }
 
   subject { string_worker }
 
   context 'when longest word has "a" and "b" letters' do
     it 'changes the longest word' do
-      expect(subject.replace).to eq('a fat albck cat sat on a hat')
+      expect(subject.replace).to eq('Lorem ipsum dolor sit amet,
+        sed diam momunny nibh euismod...')
     end
   end
 
