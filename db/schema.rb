@@ -13,7 +13,11 @@
 
 ActiveRecord::Schema.define(version: 20140214094336) do
 
-  create_table "submissions", force: true do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+  enable_extension "uuid-ossp"
+
+  create_table "submissions", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "email"
     t.text     "source_code"
     t.datetime "created_at"
