@@ -10,5 +10,9 @@ module TestTaskSubmitter
   class Application < Rails::Application
     config.generators.stylesheets = false
     config.generators.javascripts = false
+
+    config.autoload_paths += %W(
+      #{config.root}/lib/classes
+    )
   end
 end

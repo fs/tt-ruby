@@ -12,8 +12,17 @@ end
 # puts ARGV[1]
 load(ARGV[0])
 
+output = `bin/rspec -f j spec/classes/#{ARGV[1]}`
+output = JSON.parse output
+failures = output["summary"]["failure_count"]
 output = `bin/rspec spec/classes/#{ARGV[1]}`
-puts output
+if failures > 0
+  puts output
+  puts 'Failure limit exceeded. You should keep zero amount of failures from rspec.'
+  exit(1)
+else
+  puts "From rspec: failures count is #{failures}"
+end
 
 # rubocop warnings
 output = `bin/rubocop --rails --format json #{ARGV[0]}`
