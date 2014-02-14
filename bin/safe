@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+
+require 'pathname'
+
+if ARGV.count < 2
+  puts 'Not enough parameters'
+  exit(1)
+end
+
+task_file = File.expand_path("../../lib/classes/#{ARGV[0]}",
+  Pathname.new(__FILE__).realpath)
+task_file.untaint
+spec_file = ARGV[1].inspect
+spec_file.untaint
+
+$SAFE = 1
+
+# puts task_file
+# puts spec_file
+
+output = `bin/quality #{task_file} #{spec_file}`
+puts output
+code = `echo $?`
+# puts code
+exit(code.to_i)
