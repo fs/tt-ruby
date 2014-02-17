@@ -12,5 +12,38 @@ OptionParser.new do |opts|
   end
 end.parse!
 
-puts options[:file]
-`docker run -e RUN=#{options[:file]} -v #{File.dirname(options[:file])}:#{File.dirname(options[:file])}:ro -v /var/utils/checker:/var/utils/checker:ro -w /var/utils/checker -n=false -m=26m -rm=true rubysafe bash -c -l 'bin/rspec'`
+# Docker run options:
+#   Set RUN environment variable with the full path
+#   of checking script file
+#   -e RUN=#{options[:file]}
+
+#   Share directory of checking script file
+#   with docker
+#   -v #{File.dirname(options[:file])}:#{File.dirname(options[:file])}:ro
+
+#   Set docker working directory
+#   -w /var/utils/checker
+
+#   Disable Network
+#   -n=false
+
+#   Restrict memory usage by docker
+#   up to 25 megabytes
+#   -m=26m
+
+#   Automatically remove the container when it exits.
+#   docker rm `docker ps -a -q`
+#   -rm=true
+
+#   Run the following script on the docker
+#   working directory
+#   rubysafe bash -c -l 'bin/rspec'
+
+`docker run \
+  -e RUN=#{options[:file]} \
+  -v #{File.dirname(options[:file])}:#{File.dirname(options[:file])}:ro \
+  -w /var/utils/checker \
+  -n=false \
+  -m=26m \
+  -rm=true \
+  rubysafe bash -c -l 'bin/rspec'`
