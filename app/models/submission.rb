@@ -1,3 +1,11 @@
 class Submission < ActiveRecord::Base
-  validates_presence_of :email, :source_code
+  EMAIL = /\A[^@]+@[^@]+\z/
+
+  validates :email,
+    presence: true,
+    format: { with: EMAIL }
+
+  validates :source_code,
+    presence: true,
+    length: { maximum: 4000 }
 end
