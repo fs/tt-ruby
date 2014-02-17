@@ -8,6 +8,7 @@ gem 'pg'
 
 gem 'mail_view'
 gem 'decent_exposure'
+gem 'unicorn'
 
 gem 'trello', git: 'git@github.com:dmitrytrager/trello.git'
 
