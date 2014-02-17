@@ -7,7 +7,7 @@ class SubmissionsController < ApplicationController
     response.headers['Content-Type'] = 'text/event-stream'
     result = CheckCode.new(submission)
 
-    result.read.each do |line|
+    result.read do |line|
       response.stream.write line
     end
 

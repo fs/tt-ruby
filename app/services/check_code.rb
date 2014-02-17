@@ -1,6 +1,9 @@
+require 'pty'
+
 class CheckCode
   CMD = 'bin/run_submission'
   PATH = Rails.root.join('tmp/submissions')
+  CPU_TIME = 5
 
   attr_reader :submission
 
@@ -8,15 +11,19 @@ class CheckCode
     @submission = submission
   end
 
-  def read
+  def read(&block)
+    stdout_or_errors.each(&block)
+  end
+
+  private
+
+  def stdout_or_errors
     if submission_saved?
       Enumerator.new(&method(:check_code))
     else
       submission.errors.full_messages
     end
   end
-
-  private
 
   def submission_saved?
     if submission.save
@@ -36,9 +43,14 @@ class CheckCode
   end
 
   def check_code(block)
-    IO.popen(cmd) do |stdin|
-      stdin.each { |line| block << line }
-    end
+    master, slave = PTY.open
+    spawn cmd,
+      out: slave,
+      rlimit_cpu: CPU_TIME,
+      rlimit_rttime: CPU_TIME
+    slave.close
+
+    master.each { |line| block << line }
   rescue Errno::EIO
   end
 
