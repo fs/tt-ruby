@@ -3,15 +3,12 @@ class SubmissionsController < ApplicationController
 
   expose(:submission, attributes: :submission_params)
 
+  respond_to :json, only: [:create]
+
   def create
-    response.headers['Content-Type'] = 'text/event-stream'
-    result = CheckCode.new(submission)
+    submission.save
 
-    result.read do |line|
-      response.stream.write line
-    end
-
-    response.stream.close
+    respond_with(submission, responder: JsonResponder)
   end
 
   private
