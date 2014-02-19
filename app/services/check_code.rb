@@ -5,46 +5,30 @@ class CheckCode
   PATH = Rails.root.join('tmp/submissions')
   CPU_TIME = 5
 
-  attr_reader :submission
+  attr_reader :submission, :temp_path
 
   def initialize(submission)
     @submission = submission
+    @temp_path = create_temp_source_file
   end
 
   def read(&block)
-    stdout_or_errors.each(&block)
+    Enumerator.new(&method(:perform)).each(&block)
   end
 
   private
 
-  def stdout_or_errors
-    if submission_saved?
-      Enumerator.new(&method(:check_code))
-    else
-      submission.errors.full_messages
-    end
+  def create_temp_source_file
+    path = File.join(PATH, submission.id.to_s, 'task.rb')
+    FileUtils.mkdir_p(File.dirname(path)) unless File.directory?(path)
+    File.write(path, submission.source_code)
+
+    path
   end
 
-  def submission_saved?
-    if submission.save
-      File.open(temp_file_path, 'w') do |file|
-        file.write(submission.source_code)
-      end
-    end
-
-    submission.valid?
-  end
-
-  def temp_file_path
-    dir = File.join(PATH, submission.id.to_s)
-    FileUtils.mkdir_p(dir) unless File.directory?(dir)
-
-    File.join(dir, 'task.rb')
-  end
-
-  def check_code(block)
+  def perform(block)
     master, slave = PTY.open
-    spawn cmd,
+    spawn "#{CMD} --file #{temp_path}",
       out: slave,
       rlimit_cpu: CPU_TIME,
       rlimit_rttime: CPU_TIME
@@ -52,9 +36,5 @@ class CheckCode
 
     master.each { |line| block << line }
   rescue Errno::EIO
-  end
-
-  def cmd
-    "#{CMD} --file #{temp_file_path}"
   end
 end
