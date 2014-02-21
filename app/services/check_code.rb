@@ -1,7 +1,9 @@
 require 'pty'
 
 class CheckCode
-  CMD = 'bin/run_submission'
+  CMD = Rails.env.development? ?
+    'bin/run_submission_dev' :
+    'bin/run_submission'
   PATH = Rails.root.join('tmp/submissions')
   CPU_TIME = 5
 
@@ -14,6 +16,8 @@ class CheckCode
 
   def read(&block)
     Enumerator.new(&method(:perform)).each(&block)
+
+    FileUtils.rm_rf(File.dirname(temp_path))
   end
 
   private
