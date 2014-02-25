@@ -2,12 +2,14 @@ source 'https://rubygems.org'
 
 ruby '2.1.0'
 
-gem 'rails', '4.0.2'
+gem 'rails', '4.0.3'
 
 gem 'pg'
 
 gem 'mail_view'
 gem 'decent_exposure'
+
+gem 'trello', git: 'git@github.com:dmitrytrager/trello.git'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
