@@ -12,5 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require ace/ace
+//= require_tree ./helpers
 //= require_tree ./views
 //= require bootstrap

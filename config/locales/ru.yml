@@ -1,0 +1,19 @@
+ru:
+  app:
+    layouts:
+      application:
+        banner:
+          title: "Flatstack"
+          subtitle_html: "Тестовое<br>Задание"
+        start: "Начать тестирование"
+    submissions:
+      new:
+        title: "Тестовое Задание"
+        sub_title: "ТРЕБОВАНИЯ"
+        description: "Дана последовательность:"
+        description_more: "Нужно чтобы ваша программа могла продолжить
+          данную последовательность. Для проверки мы используем следующие тесты:"
+        result: "Результат"
+        solution: "Решение"
+        submit: "Отправить"
+

@@ -13,6 +13,8 @@ OptionParser.new do |opts|
 end.parse!
 
 puts "Checking: #{options[:file]}"
-system("cat #{options[:file]}")
+puts '......................'
 sleep(2)
-puts 'Done'
+
+puts 'Finished in 0.07942 seconds'
+puts '2 examples, 0 failures'

@@ -1,9 +1,12 @@
 class window.SubmissionView
   constructor: (@$form) ->
+    @$submissionSourceCode = @$form.find('#submission_source_code')
+    @_initializeEditors()
     @_bindEvents()
 
   _bindEvents: ->
     @$form
+      .on 'ajax:before', @_copySourceCode
       .on 'ajax:success', @_connectToStream
       .on 'ajax:error', @_showErrors
 
@@ -16,6 +19,12 @@ class window.SubmissionView
     $.each xhr.responseJSON.errors,
       (index, error) -> console.log(error)
 
-  _handleConnection: (e) ->
-    console.log(e.data)
+  _handleConnection: (e) =>
+    @resultEditor.insert("#{e.data}\n")
 
+  _initializeEditors: ->
+    [testTask, @sourceCodeEditor, @resultEditor] = Editor.init($('.code-editor'))
+
+  _copySourceCode: =>
+    @resultEditor.clear()
+    @$submissionSourceCode.val(@sourceCodeEditor.getValue())
