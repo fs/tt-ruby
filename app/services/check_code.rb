@@ -5,7 +5,7 @@ class CheckCode
     'bin/run_submission_dev' :
     'bin/run_submission'
   PATH = Rails.root.join('tmp/submissions')
-  CPU_TIME = 5
+  CPU_TIME = 15
 
   attr_reader :submission, :temp_path
 

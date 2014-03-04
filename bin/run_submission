@@ -46,4 +46,4 @@ system("docker run \
   -n=false \
   -m=26m \
   -rm=true \
-  rubysafe bash -c -l 'bin/rspec'")
+  rubysafe bash -c -l 'bin/check'")
