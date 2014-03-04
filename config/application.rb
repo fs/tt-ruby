@@ -11,7 +11,10 @@ module TestTaskSubmitter
     config.generators.stylesheets = false
     config.generators.javascripts = false
 
+    I18n.enforce_available_locales = false
+
     config.autoload_paths += %W(
+      #{config.root}/responders
       #{config.root}/lib/classes
     )
   end

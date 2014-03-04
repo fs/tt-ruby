@@ -1,0 +1,30 @@
+.container.main
+  .row
+    .col-md-8.col-md-offset-2
+      h2= t('app.submissions.new.title')
+
+      h3= t('app.submissions.new.sub_title')
+      p= t('app.submissions.new.description')
+
+      pre.code-editor(data-readonly="true")
+        = render 'task_spec'
+
+  .row
+    .col-md-8.col-md-offset-2
+      h3= t('app.submissions.new.solution')
+
+      = form_for submission, remote: true, data: { type: :json }  do |f|
+        .form-group
+          = f.label :email
+          = f.email_field :email, class: 'form-control', placeholder: 'Email:'
+
+        .form-group
+          .code-editor
+          = f.hidden_field :source_code, class: 'form-control'
+
+          = f.submit t('app.submissions.new.submit'), class: 'btn btn-default'
+
+      h3= t('app.submissions.new.result')
+
+      #result_code.code-editor(data-readonly="true" data-mode="powershell")
+

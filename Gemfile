@@ -4,10 +4,17 @@ ruby '2.1.0'
 
 gem 'rails', '4.0.3'
 
+gem 'jquery-rails'
+gem 'coffee-rails'
+gem 'sass-rails'
+gem 'bootstrap-sass'
+
 gem 'pg'
 
 gem 'mail_view'
 gem 'decent_exposure'
+gem 'unicorn'
+gem 'slim'
 
 gem 'trello', git: 'git@github.com:dmitrytrager/trello.git'
 

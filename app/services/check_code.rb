@@ -1,48 +1,44 @@
-class CheckCode
-  CMD = 'bin/run_submission'
-  PATH = Rails.root.join('tmp/submissions')
+require 'pty'
 
-  attr_reader :submission
+class CheckCode
+  CMD = Rails.env.development? ?
+    'bin/run_submission_dev' :
+    'bin/run_submission'
+  PATH = Rails.root.join('tmp/submissions')
+  CPU_TIME = 15
+
+  attr_reader :submission, :temp_path
 
   def initialize(submission)
     @submission = submission
+    @temp_path = create_temp_source_file
   end
 
-  def read
-    if submission_saved?
-      Enumerator.new(&method(:check_code))
-    else
-      submission.errors.full_messages
-    end
+  def read(&block)
+    Enumerator.new(&method(:perform)).each(&block)
+
+    FileUtils.rm_rf(File.dirname(temp_path))
   end
 
   private
 
-  def submission_saved?
-    if submission.save
-      File.open(temp_file_path, 'w') do |file|
-        file.write(submission.source_code)
-      end
-    end
+  def create_temp_source_file
+    path = File.join(PATH, submission.id.to_s, 'task.rb')
+    FileUtils.mkdir_p(File.dirname(path)) unless File.directory?(path)
+    File.write(path, submission.source_code)
 
-    submission.valid?
+    path
   end
 
-  def temp_file_path
-    dir = File.join(PATH, submission.id.to_s)
-    FileUtils.mkdir_p(dir) unless File.directory?(dir)
+  def perform(block)
+    master, slave = PTY.open
+    spawn "#{CMD} --file #{temp_path}",
+      out: slave,
+      rlimit_cpu: CPU_TIME,
+      rlimit_rttime: CPU_TIME
+    slave.close
 
-    File.join(dir, 'task.rb')
-  end
-
-  def check_code(block)
-    IO.popen(cmd) do |stdin|
-      stdin.each { |line| block << line }
-    end
+    master.each { |line| block << line }
   rescue Errno::EIO
-  end
-
-  def cmd
-    "#{CMD} --file #{temp_file_path}"
   end
 end
