@@ -1,2 +1,0 @@
-class StringWorker
-end

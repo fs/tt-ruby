@@ -34,6 +34,10 @@ group :development, :test do
   gem 'rubocop'
 end
 
+group :development, :test, :staging do
+  gem 'faker'
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
