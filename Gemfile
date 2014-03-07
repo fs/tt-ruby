@@ -16,7 +16,7 @@ gem 'decent_exposure'
 gem 'unicorn'
 gem 'slim'
 
-gem 'trello', git: 'git@github.com:dmitrytrager/trello.git'
+gem 'trello', git: 'git@github.com:fs/trello.git'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
