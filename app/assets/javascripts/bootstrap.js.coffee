@@ -1,2 +1,2 @@
 $ ->
-  new SubmissionView($('#new_submission'))
+  new SubmissionView($('#submission'))

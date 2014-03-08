@@ -16,7 +16,7 @@ gem 'decent_exposure'
 gem 'unicorn'
 gem 'slim'
 
-gem 'trello', git: 'git@github.com:fs/trello.git'
+gem 'trello', github: 'fs/trello', require: false
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -32,6 +32,7 @@ group :development, :test do
   gem 'rails_best_practices'
   gem 'brakeman'
   gem 'rubocop'
+  gem 'factory_girl_rails'
 end
 
 # Use ActiveModel has_secure_password

@@ -2,13 +2,14 @@ require 'spec_helper'
 
 describe '/submissions' do
 
-  describe 'create' do
+  describe 'update' do
+    let(:submission) { create(:submission) }
     let(:params) do
-      { submission: { email: 'my@example.com', source_code: 'source' } }
+      { submission: { source_code: 'source' } }
     end
 
     before do
-      post('/submissions.json', params)
+      put("/submissions/#{submission.id}.json", params)
     end
 
     subject { response }

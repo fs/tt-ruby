@@ -13,7 +13,7 @@
     .col-md-8.col-md-offset-2
       h3= t('app.submissions.new.solution')
 
-      = form_for submission, remote: true, data: { type: :json }  do |f|
+      = form_for submission, id: 'submission', remote: true, data: { type: :json }  do |f|
         .form-group
           .code-editor
           = f.hidden_field :source_code, class: 'form-control'

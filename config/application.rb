@@ -10,6 +10,7 @@ module TestTaskSubmitter
   class Application < Rails::Application
     config.generators.stylesheets = false
     config.generators.javascripts = false
+    config.generators.factory_girl = false
 
     I18n.enforce_available_locales = false
 
