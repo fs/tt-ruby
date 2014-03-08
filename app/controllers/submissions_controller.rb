@@ -24,6 +24,6 @@ class SubmissionsController < ApplicationController
   private
 
   def submission_params
-    params.require(:submission).permit(:email, :source_code)
+    params.require(:submission).permit(:source_code)
   end
 end

@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:dmitrytrager/trello.git
+  remote: git@github.com:fs/trello.git
   revision: 568896f3f0134c8ef115a5072a7e06ec9ab34251
   specs:
     trello (1.1.0)
