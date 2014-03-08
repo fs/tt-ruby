@@ -9,6 +9,8 @@ gem 'coffee-rails'
 gem 'sass-rails'
 gem 'bootstrap-sass'
 
+gem 'therubyracer'
+gem 'uglifier'
 gem 'pg'
 
 gem 'mail_view'
