@@ -12,7 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.onepage-scroll
 //= require ace/ace
+//= require ace/mode-ruby
+//= require ace/mode-powershell
+//= require ace/theme-solarized_light
+//= require ace/theme-solarized_dark
 //= require_tree ./helpers
 //= require_tree ./views
 //= require bootstrap

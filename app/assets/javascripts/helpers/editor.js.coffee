@@ -1,6 +1,7 @@
 class window.Editor
   THEME = 'solarized_light'
   MODE = 'ruby'
+  FONT_SIZE = 15
 
   @init: ($editors) ->
     $editors.map (index, element) ->
@@ -20,7 +21,8 @@ class window.Editor
     @editor.setValue('')
 
   _setup: (element) ->
-    @editor.setTheme("ace/theme/#{THEME}")
+    @editor.setFontSize(FONT_SIZE)
+    @editor.setTheme("ace/theme/#{$(element).data('theme') || THEME}")
     @editor.getSession().setMode("ace/mode/#{$(element).data('mode') || MODE}")
 
     if $(element).data('readonly')
