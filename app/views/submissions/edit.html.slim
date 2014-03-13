@@ -50,6 +50,14 @@
               = f.submit t('app.submissions.new.submit'),
                   class: 'btn btn-default btn-action'
 
-    .col-md-6.editor.col-right
-      #result_code.code-editor(data-readonly="true" data-mode="powershell")
+    #result_prompt.col-md-6.editor.col-right
+      .col-md-offset-5
+        .result-prompt.col-md-5
+          h3= t('app.submissions.new.result_prompt')
+          h3
+            span.dots ▪▪▪
+          = image_tag('ruby_placeholder.png', class: 'img-responsive')
+
+    #result.col-md-6.editor.col-right
+      .code-editor(data-readonly="true" data-mode="powershell")
 

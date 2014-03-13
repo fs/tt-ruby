@@ -15,6 +15,7 @@ en:
           Your class also should match following specifications:"
         requirements: 'REQUIREMENTS:'
         result: "Result"
+        result_prompt: "Your result will be here"
         solution: "SOLUTION:"
         submit: "Send"
         go: "Start"
