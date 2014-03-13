@@ -15,9 +15,9 @@ class window.SubmissionView
     source.onmessage = @_handleConnection
     source.onerror = -> source.close()
 
-  _showErrors: (event, xhr) ->
+  _showErrors: (event, xhr) =>
     $.each xhr.responseJSON.errors,
-      (index, error) -> console.log(error)
+      (index, error) => @resultEditor.insert("#{error}\n")
 
   _handleConnection: (e) =>
     @resultEditor.insert("#{e.data}\n")

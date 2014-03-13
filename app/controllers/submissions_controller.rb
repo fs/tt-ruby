@@ -22,7 +22,9 @@ class SubmissionsController < ApplicationController
     submission.attributes = submission_attributes
     submission.save
 
-    respond_with(submission, responder: JsonResponder)
+    respond_with submission,
+      responder: JsonResponder,
+      location: [submission]
   end
 
   private
