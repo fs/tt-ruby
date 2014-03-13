@@ -1,9 +1,9 @@
 class SubmissionsController < ApplicationController
   include ActionController::Live
 
-  expose(:submission, attributes: :submission_params)
+  expose(:submission, attributes: :submission_attributes)
 
-  respond_to :json, only: [:create]
+  respond_to :json, only: [:update]
 
   def show
     response.headers['Content-Type'] = 'text/event-stream'
@@ -15,15 +15,21 @@ class SubmissionsController < ApplicationController
     response.stream.close
   end
 
-  def create
+  def edit
+  end
+
+  def update
+    submission.attributes = submission_attributes
     submission.save
 
-    respond_with(submission, responder: JsonResponder)
+    respond_with submission,
+      responder: JsonResponder,
+      location: [submission]
   end
 
   private
 
-  def submission_params
-    params.require(:submission).permit(:email, :source_code)
+  def submission_attributes
+    params.require(:submission).permit(:source_code)
   end
 end

@@ -11,13 +11,6 @@ html
 
   body
 
-    header
-      .welcome
-        h1= t('app.layouts.application.banner.title')
-        span= t('app.layouts.application.banner.subtitle_html')
-
-    a.cta(href="#")= t('app.layouts.application.start')
-
     = yield
 
     = javascript_include_tag  'application'
