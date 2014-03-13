@@ -1,8 +1,8 @@
 .container-fluid.main.submissions
-  section.row.solarized-dark
+  section#task.row.solarized-dark
     .col-md-6
-      .row
-        = image_tag('fs_logo.png', class: 'img-responsive brand')
+      .row.brand
+        = image_tag('fs_logo.png', class: 'img-responsive')
 
       .row
         .col-md-8.col-md-offset-2
@@ -28,16 +28,27 @@
       .code-editor(data-readonly="true" data-theme="solarized_dark")
         = render 'task_spec'
 
-  section.row#submission
+  section#submission.row.solarized-light
     .col-md-6.editor
-      h3= t('app.submissions.new.solution')
+      .row.brand
+        .col-md-2.col-md-offset-0
+          = image_tag('fs_logo_light.png', class: 'img-responsive brand')
+
+        .col-md-8.col-md-offset-2
+          h3= t('app.submissions.new.solution')
 
       = form_for submission, id: 'submission', remote: true, data: { type: :json }  do |f|
         = f.hidden_field :source_code, class: 'form-control'
 
-        .code-editor
+        .row
+          .code-editor
 
-        = f.submit t('app.submissions.new.submit'), class: 'btn btn-default'
+        .row.actions
+          .col-md-offset-2
+            a.btn.btn-default.btn-gray.btn-action(href="#task")
+              = t('app.submissions.new.task')
+            = f.submit t('app.submissions.new.submit'),
+                class: 'btn btn-default btn-action'
 
     .col-md-6.editor.col-right
       #result_code.code-editor(data-readonly="true" data-mode="powershell")

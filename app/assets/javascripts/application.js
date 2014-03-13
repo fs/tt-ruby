@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.onepage-scroll
 //= require ace/ace
 //= require ace/mode-ruby
 //= require ace/mode-powershell

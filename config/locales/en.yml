@@ -15,6 +15,7 @@ en:
           Your class also should match following specifications:"
         requirements: 'REQUIREMENTS:'
         result: "Result"
-        solution: "Solution"
+        solution: "SOLUTION:"
         submit: "Send"
         go: "Start"
+        task: "Task"
