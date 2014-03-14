@@ -5,7 +5,7 @@ class TrelloEventsController < ApplicationController
   respond_to :json, only: [:create]
 
   def create
-    # log event data
+    LogEventAndCreateSubmission(action: trello_action, model: trello_model).perform
   end
 
   private

@@ -17,6 +17,7 @@ gem 'mail_view'
 gem 'decent_exposure'
 gem 'unicorn'
 gem 'slim'
+gem 'interactor-rails', '~> 1.0'
 
 gem 'trello', github: 'fs/trello', require: false
 
