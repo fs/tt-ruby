@@ -3,7 +3,7 @@ class TrelloModel < TrelloEntity
   field :name
   field :desc
   field :closed
-  field :idOrganication
+  field :idOrganization
   field :pinned
   field :url
   field :prefs

@@ -7,7 +7,7 @@ class TrelloEntity
 
   def self.field(name)
     define_method(name) { @attributes[name] }
-    define_method("#{name}=") {|value| @attributes[name] = value }
+    define_method("#{name}=") { |value| @attributes[name] = value }
   end
 
   def initialize(attributes = {})
