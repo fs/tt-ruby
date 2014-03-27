@@ -1,5 +1,4 @@
-TT Ruby
-===================
+# TT Ruby
 
 TT Ruby is an utility for work with test task submissions in Flatstack.
 It's Ruby on Rails application hosted on DigitalOcean.
@@ -12,11 +11,10 @@ and use hooks to get information about new Trello cards or control cards movemen
 
 ## Credits
 
-Thank you, [t-ruby](https://github.com/fs/tt-ruby/contributors) and [tt-ruby-checker](https://github.com/fs/tt-ruby-checker/contributors) contributors!
+TT Ruby is maintained by  [Vladimir Mikhailov](https://github.com/VladimirMikhailov).
+It was written by [Flatstack](http://www.flatstack.com) with the help of our
+[contributors](http://github.com/fs/tt-ruby/contributors).
 
-![FlatStack](http://www.flatstack.com/assets/images/logo.png)
+Thank you, [tt-ruby](https://github.com/fs/tt-ruby/contributors) and [tt-ruby-checker](https://github.com/fs/tt-ruby-checker/contributors) contributors!
 
-Maintained by [Vladimir Mikhailov](https://github.com/VladimirMikhailov)
-
-TT Ruby is © 2014 FlatStack. It is free software and may be
-redistributed under the terms specified in the [LICENSE](LICENSE) file.
+[![Flatstack](http://www.flatstack.com/assets/images/logo.png)](http://www.flatstack.com)
