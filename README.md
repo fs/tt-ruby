@@ -13,7 +13,7 @@ and use hooks to get information about new Trello cards or control cards movemen
 
 TT Ruby is maintained by  [Vladimir Mikhailov](https://github.com/VladimirMikhailov).
 It was written by [Flatstack](http://www.flatstack.com) with the help of our
-[contributors](http://github.com/fs/ruby-base/contributors).
+[contributors](http://github.com/fs/tt-ruby/contributors).
 
 Thank you, [tt-ruby](https://github.com/fs/tt-ruby/contributors) and [tt-ruby-checker](https://github.com/fs/tt-ruby-checker/contributors) contributors!
 
